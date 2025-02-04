@@ -4,3 +4,4 @@ django-tailwind
 django_browser_reload
 Pillow
 gunicorn
+whitenoise
