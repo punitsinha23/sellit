@@ -1,13 +1,13 @@
 {
   "builds": [{
-      "src": "sellit/wsgi.py",
+      "src": "djangoproject/wsgi.py",
       "use": "@vercel/python",
       "config": {"maxLamdaSize": "15mb", "runtime": "python3.12.1"}
   }],
   "routes": [
       {
           "src": "/(.*)",
-          "dest": "sellit/wsgi.py"
+          "dest": "djangoproject/wsgi.py"
       }
   ]
 }
