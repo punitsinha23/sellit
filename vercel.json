@@ -2,13 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "djangoproject/manage.py",  
+      "src": "djangoproject/wsgi.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
         "runtime": "python3.12"
-      },
-      "buildCommand": "python djangoproject/manage.py collectstatic --noinput"
+      }
     }
   ],
   "routes": [
