@@ -6,7 +6,7 @@
   }],
   "routes": [
       {
-          "src": "/(.*)",
+          "src": "/static/(.*)", "dest": "/static/$1",
           "dest": "djangoproject/wsgi.py"
       }
   ]
