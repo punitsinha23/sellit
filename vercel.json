@@ -1,13 +1,13 @@
 {
-    "version": 2,
-    "builds": [
+  "builds": [{
+      "src": "sellit/wsgi.py",
+      "use": "@vercel/python",
+      "config": {"maxLamdaSize": "15mb", "runtime": "python3.12.1"}
+  }],
+  "routes": [
       {
-        "src": "manage.py",
-        "use": "@vercel/python"
+          "src": "/(.*)",
+          "dest": "sellit/wsgi.py"
       }
-    ],
-    "routes": [
-      { "src": "/(.*)", "dest": "manage.py" }
-    ]
-  }
-  
+  ]
+}
