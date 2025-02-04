@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'navbar.html' %}
+    <hr width="100%">
+    <br>
+    {% if messages %}
+    <div class="absolute top-4 right-4 space-y-2">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    <div class="flex justify-center items-center max-w-4xl mx-auto">
+        <div class="card shadow-xl p-6 max-w-md mx-auto w-full">
+            <h1 class="font-bold text-2xl text-center mb-4" style="color: aliceblue;">Login Here</h1>
+
+            <form method="POST" class="w-full">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="description" class="label">
+                        <span class="label-text ">Email</span>
+                    </label>
+                    {{ form.email}}
+                </div>
+
+                <div class="mb-4">
+                    <label for="price" class="label">
+                        <span class="label-text">Password</span>
+                    </label>
+                    {{ form.password }}
+                </div>
+
+                <div class="mb-4 mt-9 flex">
+                    <button type="submit" class="btn btn-primary w-full max-w-80 ml-4 mt-9">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

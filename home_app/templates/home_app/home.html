@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<hr width="100%">
+<br>
+
+{% if messages %}
+    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50 w-full max-w-md">
+        {% for message in messages %}
+            <div class="bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+<h1 class="text-center text-3xl font-bold mb-8 text-white">Home Page</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 py-6">
+    {% for product in products %}
+  
+    <div class="card bg-base-100 w-full shadow-lg flex flex-col rounded-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+       
+        <figure class="w-full overflow-hidden">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover transition-transform duration-300 transform hover:scale-110" />
+        </figure>
+       
+        <div class="card-body p-4 flex-1 flex flex-col">
+            <h2 class="card-title text-xl font-semibold mb-2 text-white">
+                {{ product.name }}
+                <div class="badge badge-secondary">NEW</div>
+            </h2>
+            <p class="text-gray-300 text-sm mb-4">{{ product.description }}</p>
+            <a href="{% url 'signup' %}">
+                <button class="btn btn-info w-full py-2 font-bold text-white transition-colors duration-300 hover:bg-blue-700 hover:text-white rounded-lg">
+                    Checkout
+                </button>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

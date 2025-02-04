@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'navbar.html' %}
+    <hr width="100%">
+    
+    <!-- Main Container -->
+    <div class="max-w-5xl mx-auto p-4">
+        
+        <!-- Product Title -->
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-100">{{ product.name }}</h1>
+        
+        <!-- Image Section -->
+        <div class="flex justify-center mb-6">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="max-w-full h-auto rounded-lg shadow-lg">
+            {% else %}
+                <p class="text-gray-400">No image available</p>
+            {% endif %}
+        </div>
+
+        <!-- Product Details -->
+        <div class="bg-gray-800 text-gray-200 p-6 rounded-lg shadow-md">
+            <p class="text-lg mb-4 text-lime-200"><strong>Price:</strong> ${{ product.price }}</p>
+            <p class="text-lg mb-6"><strong>Description:</strong> {{ product.description }}</p>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-start gap-4">
+                <a href="{% url 'update_product' pk=product.pk username=username %}" class="btn btn-info btn-md">Update</a>
+                <a href="{% url 'delete_product' pk=product.pk username=username %}" class="btn btn-error btn-md">Delete</a>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

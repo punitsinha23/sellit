@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<hr width="100%">
+<br>
+
+<!-- Main Container -->
+<div class="container mx-auto p-6">
+
+    <!-- Page Title -->
+    <h1 class="text-center text-white font-bold text-3xl mb-12">YOUR PROFILE</h1>
+
+    <!-- Grid Layout for Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- First Card (Your Products) -->
+        <div class="bg-slate-600 p-6 rounded-2xl shadow-lg hover:bg-slate-500 transition-all duration-300 transform hover:scale-105">
+            <a href="{% url 'product_list' username %}" class="block">
+                <div class="flex items-center mb-4">
+                    <img src="https://i.pinimg.com/736x/15/e8/21/15e821594ff8f60a5ee915f0b600553d.jpg" alt="Your Products" class="w-12 h-12 rounded-full mr-4">
+                    <h2 class="font-semibold text-gray-100 text-xl">YOUR PRODUCTS</h2>
+                </div>
+                <p class="text-gray-300">Check out your products here.</p>
+            </a>
+        </div>
+
+        <!-- Second Card (Your Cart) -->
+        <div class="bg-slate-600 p-6 rounded-2xl shadow-lg hover:bg-slate-500 transition-all duration-300 transform hover:scale-105">
+            <a href="{% url 'view_cart' username=request.user.username %}" class="block">
+                <div class="flex items-center mb-4">
+                    <img src="https://i.pinimg.com/736x/ee/9e/04/ee9e04239af77f8ae952971b061ab16f.jpg" alt="Your Cart" class="w-12 h-15 rounded-full mr-4">
+                    <h2 class="font-semibold text-white text-xl">YOUR CART</h2>
+                </div>
+                <p class="text-gray-300">Check out your cart here.</p>
+            </a>
+        </div>
+
+        <!-- Third Card (Your Earnings) -->
+        <div class="bg-slate-600 p-6 rounded-2xl shadow-lg hover:bg-slate-500 transition-all duration-300 transform hover:scale-105">
+            <a href="#" class="block">
+                <div class="flex items-center mb-4">
+                    <img src="https://i.pinimg.com/736x/48/68/c8/4868c8e36c8a1d7cfba35b95e43df604.jpg" alt="Your Earnings" class="w-12 h-12 rounded-full mr-4">
+                    <h2 class="font-semibold text-white text-xl">YOUR EARNINGS</h2>
+                </div>
+                <p class="text-gray-300">Check out your earnings here.</p>
+            </a>
+        </div>
+
+        <!-- Fourth Card (Your Buyings) -->
+        <div class="bg-slate-600 p-6 rounded-2xl shadow-lg hover:bg-slate-500 transition-all duration-300 transform hover:scale-105">
+            <a href="#" class="block">
+                <div class="flex items-center mb-4">
+                    <img src="https://i.pinimg.com/736x/3b/46/11/3b4611b91e2e3ad8b7f5b88ce616d862.jpg" alt="Your Buyings" class="w-12 h-12 rounded-full mr-4">
+                    <h2 class="font-semibold text-gray-100 text-xl">YOUR BUYINGS</h2>
+                </div>
+                <p class="text-gray-300">Check out your buyings here.</p>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

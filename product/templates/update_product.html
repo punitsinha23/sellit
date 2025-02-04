@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<hr width="100%">
+    <h1 class="text-center text-2xl" style="font-weight: bold; margin-top: 20px; margin-bottom: 20px; color:aliceblue">Welcome to Our Store</h1>
+    <h3 style="text-align: center; margin-bottom: 20px;">update products here</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <div class = "card shadow p-4" style = "max-width: 500px; margin: auto;">
+            {% csrf_token %}
+            <div class="card shadow-xl p-6 max-w-md mx-auto">
+            <div class="mb-4">
+                <label for="name" class="label">
+                    <span class="label-text ">Product name</span>
+                </label>
+                {{ form.name }}
+            </div>
+
+            <div class = "mb-4">
+                <label class = "label" for="description">
+                    <span class="label-text">description</span>
+                </label>
+                {{ form.description}}
+            </div>
+            <div class = "mb-4">
+                <label class = "label">price</label>
+                {{ form.price}}
+            </div>
+            <div class="mb-4">
+                <label for="image" class="label">
+                    <span class="label-text">Upload Image</span>
+                </label>
+                {{ form.image }}
+            </div>
+            <button type="submit" class="btn btn-primary">save</button>
+            <a href="{% url 'product_list' username=username %}" class="btn btn-danger" style="margin-top: 20px;">cancel</a>
+        </div>
+      </form>
+    </div>
+{% endblock %}

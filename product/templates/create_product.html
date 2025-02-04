@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<hr>
+
+<h1 class="font-bold text-4xl my-4 text-center bg-gradient-to-r from-gray-600 via-white to-gray-100 bg-clip-text text-transparent drop-shadow-lg animate-pulse">
+    Welcome to your Store
+  </h1>
+  
+
+<form method="POST" enctype="multipart/form-data" class="mt-10">
+    <div class="card shadow-xl p-6 max-w-md mx-auto bg-base-200">
+        {% csrf_token %}
+        <h3 class="text-center mb-3 mt-3 text-xl font-semibold text-white">Create products here</h3>
+
+        <!-- Product Name -->
+        <div class="mb-4">
+            <label for="name" class="label">
+                <span class="label-text">Product name</span>
+            </label>
+            <input type="text" id="name" name="name" class="input input-bordered w-full max-w-xs" placeholder="Enter a product" value="{{ form.name.value }}">
+        </div>
+
+        <!-- Description -->
+        <div class="mb-4">
+            <label for="description" class="label">
+                <span class="label-text">Description</span>
+            </label>
+            <textarea id="description" name="description" class="textarea textarea-bordered w-full max-w-xs" placeholder="Enter a description" rows="3">{{ form.description.value }}</textarea>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-4">
+            <label for="price" class="label">
+                <span class="label-text">Price</span>
+            </label>
+            <input type="number" id="price" name="price" class="input input-bordered w-full max-w-xs" placeholder="Enter price" value="{{ form.price.value }}">
+        </div>
+
+        <!-- Image Upload -->
+        <div class="mb-4">
+            <label for="image" class="label">
+                <span class="label-text">Upload Image</span>
+            </label>
+            <input type="file" id="image" name="image" class="file-input file-input-bordered w-full max-w-xs">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full mt-4">Save</button>
+    </div>
+</form>
+{% endblock %}
