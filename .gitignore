@@ -1,1 +1,43 @@
-.vercel
+node_modules
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.venv
+
+# Django-related files
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# Tailwind CSS & Node modules
+theme/node_modules/
+theme/.cache/
+theme/.parcel-cache/
+theme/package-lock.json
+
+# Compiled static files
+theme/static/css/styles.css
+theme/static/css/*.css.map
+
+# VS Code settings
+.vscode/
+
+# IDE and editor files
+*.swp
+*.swo
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
