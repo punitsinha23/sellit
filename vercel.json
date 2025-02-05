@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "manage.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "50mb" }
+      },
+      {
+        "src": "theme/static/css/*",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/theme/static/css/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "manage.py"
+      }
+    ],
+    "env": {
+      "DATABASE_URL": "postgresql://neondb_owner:1UkzdnsmKhH5@ep-green-dew-a4cctqox-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require",
+      "DEBUG": "false"
+    }
+  }
+  
