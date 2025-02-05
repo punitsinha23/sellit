@@ -19,6 +19,7 @@
 <h1 class="text-center text-3xl font-bold mb-8 text-white">Home Page</h1>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 py-6">
+{% if products %}    
     {% for product in products %}
   
     <div class="card bg-base-100 w-full shadow-lg flex flex-col rounded-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
@@ -42,5 +43,6 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
 
 {% endblock %}
