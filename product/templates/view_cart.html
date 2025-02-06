@@ -2,6 +2,7 @@
 
 {% block content %}
 {% include 'navbar.html' %}
+<hr width="100%">
 <h2 class="text-white text-center text-3xl font-bold mb-10 mt-3">{{ request.user.username }}'s Cart</h2>
 
 {% if cart.products.all %}
