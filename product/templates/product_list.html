@@ -1,20 +1,44 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 py-6 justify-center">
-    {% if products %}    
-        {% for product in products %}
-        <a href="#">
-            <div class="card bg-base-100 shadow-lg flex flex-col rounded-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                <figure class="w-full overflow-hidden">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover transition-transform duration-300 transform hover:scale-110" />
-                </figure>
-                <div class="card-body p-4 flex-1 flex flex-col items-center text-center">
-                    <h2 class="card-title text-xl font-semibold mb-2 text-white">
-                        {{ product.name }}
-                        <div class="badge badge-secondary">NEW</div>
-                    </h2>
-                    <p class="text-sm mb-4 text-lime-200"><strong>Price:</strong> ${{ product.price }}</p>
-                </div>
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<hr width="100%">
+<br>
+
+{% if messages %}
+    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50 w-full max-w-md">
+        {% for message in messages %}
+            <div class="bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg text-center">
+                {{ message }}
             </div>
-        </a>
         {% endfor %}
-    {% endif %}
+    </div>
+{% endif %}
+
+
+<h1 class="text-center text-3xl font-bold mb-8 text-white">Home Page</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 py-6">
+{% if products %}    
+    {% for product in products %}
+   <a>
+    <div class="card bg-base-100 w-full shadow-lg flex flex-col rounded-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+       
+        <figure class="w-full overflow-hidden">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover transition-transform duration-300 transform hover:scale-110" />
+        </figure>
+       
+        <div class="card-body p-4 flex-1 flex flex-col">
+            <h2 class="card-title text-xl font-semibold mb-2 text-white">
+                {{ product.name }}
+                <div class="badge badge-secondary">NEW</div>
+            </h2>
+            <p class="text-sm mb-4 text-lime-200"><strong>Price:</strong> ${{ product.price }}</p>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
+{% endif %}
+
+{% endblock %}
