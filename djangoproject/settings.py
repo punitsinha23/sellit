@@ -16,7 +16,6 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from cloudinary_storage.storage import MediaCloudinaryStorage
-from cloudinary_storage.backends import MediaCloudinaryBackend
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
