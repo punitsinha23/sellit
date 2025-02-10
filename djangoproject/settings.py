@@ -16,6 +16,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from cloudinary_storage.storage import MediaCloudinaryStorage
+import pdb
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,10 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^t2*w+*cd2-vy-u_6=yc3+u%5dxifitz8kd_a(5rnv#)@(*xb2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [".vercel.app" ,  "127.0.0.1",]
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
