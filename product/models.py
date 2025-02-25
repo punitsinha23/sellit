@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryField
 from djangoproject import settings
 
 class Product(models.Model):
@@ -8,9 +8,9 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     if settings.DEBUG:
-         image = models.ImageField(upload_to='products/')
+        image = models.ImageField(upload_to='products/')
     else:     
-        image =  image = CloudinaryField('image') 
+        image = CloudinaryField('image') 
     created_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products', null=True)
 
