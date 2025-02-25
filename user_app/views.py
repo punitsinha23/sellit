@@ -54,15 +54,26 @@ def Login(request):
 def user_dashboard(request, username):
     if request.user.username != username:
         return redirect('login') 
+
     count = Product.objects.filter(user=request.user).count()
     cart = Cart.objects.filter(user=request.user).count()
+
+   
+    try:
+        buying = Buying.objects.get(user=request.user)  
+        product_count = buying.products.count()  
+    except Buying.DoesNotExist:
+        product_count = 0  
+
     context = {
-        'username':username,
+        'username': username,
         'user': request.user,
-        'count':count,
-        'cart':cart,
-    }
+        'count': count,
+        'cart': cart,
+        'product_count': product_count, 
+    } 
     return render(request, 'user_app/user.html', context)
+
 
     
 def logout_view(request):
