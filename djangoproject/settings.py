@@ -12,10 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-from cloudinary_storage.storage import MediaCloudinaryStorage
+#import cloudinary
+#import cloudinary.uploader
+#import cloudinary.api
+#from cloudinary_storage.storage import MediaCloudinaryStorage
 import pdb
 
 
@@ -93,28 +93,35 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neondb',
-        'USER': 'neondb_owner', 
-        'PASSWORD': '1UkzdnsmKhH5',  
-        'HOST': 'ep-green-dew-a4cctqox-pooler.us-east-1.aws.neon.tech',
-        'PORT': '5432',  
-        'OPTIONS': {
-            'sslmode': 'require' 
-        },
-    }
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / "db.sqlite3",
+        }
 }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'neondb',
+            'USER': 'neondb_owner', 
+            'PASSWORD': '1UkzdnsmKhH5',  
+            'HOST': 'ep-green-dew-a4cctqox-pooler.us-east-1.aws.neon.tech',
+            'PORT': '5432',  
+            'OPTIONS': {
+                'sslmode': 'require' 
+            },
+        }
+    }
 
-CLOUDINARY_STORAGE = {
+'''CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
     'API_KEY': os.getenv('API_KEY'),
     'API_SECRET': os.getenv('API_SECRET'),
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'''
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -161,7 +168,10 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = "/tmp/media"
-MEDIA_URL = "/media/"
+#MEDIA_ROOT = "/tmp/media"
+#MEDIA_URL = "/media/"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 

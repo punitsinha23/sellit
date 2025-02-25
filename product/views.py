@@ -4,6 +4,8 @@ from .forms import Productform
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
+balance = 1000
+
 @login_required
 def create_product(request, username):
     if request.user.username != username:
@@ -72,13 +74,13 @@ def cart_product(request, pk, username):
     if request.user.username != username:
         return redirect(reverse('user_home', kwargs={'username': request.user.username}))
 
-    # Get the product (Fix: Correct query filter)
+   
     product = get_object_or_404(Product, pk=pk)
 
-    # Get or create the user's cart
+    
     cart, created = Cart.objects.get_or_create(user=request.user)
 
-    # Add product to cart
+    
     if product not in cart.products.all():
         cart.products.add(product)
 
@@ -96,7 +98,7 @@ def view_cart(request, username):
 def navbar_view(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     
-    product_count = cart.products.count()
+    product_count = cart.Products.count()
     total_price = sum([Product.price for Product in Cart.Products.all()])
     
     return render(request, 'navbar.html', {
@@ -104,3 +106,4 @@ def navbar_view(request):
         'product_count': product_count,
         'total_price': total_price,
     })
+

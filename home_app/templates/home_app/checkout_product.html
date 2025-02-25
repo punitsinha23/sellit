@@ -3,8 +3,17 @@
 {% block content %}
     {% include 'navbar.html' %}
     <hr class=" border-gray-400">
-
+    {% if messages %}
+    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50 w-full max-w-md">
+        {% for message in messages %}
+            <div class="bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     <div class="max-w-4xl mx-auto p-6 bg-gray-800 rounded-lg shadow-lg">
+       
         <!-- Product Name -->
         <h1 class="text-4xl font-semibold text-center text-white mb-6">{{ product.name }}</h1>
 
@@ -29,6 +38,11 @@
             class="btn-md bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition-all duration-300">
                 Add to Cart
             </a>
+            <a href="{% url 'buying_product' pk=product.pk username=request.user.username %}" 
+            class="btn-md bg-green-400 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-green-800 transform hover:scale-105 transition-all duration-300">
+                Buy
+            </a>
+
         </div>
     </div>
 {% endblock %}

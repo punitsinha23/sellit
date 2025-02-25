@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'navbar.html' %}
+    <hr width="100%">
+    <br>
+        <div class="container mx-auto p-6">
+            <h1 class="text-2xl font-bold mb-5 flex items-center gap-2 ">
+                🛒 Your Buyings 
+            </h1>
+            <h1 class="text-sm text-lime-200 font-bold mb-10 flex items-center gap-2 ">
+                Your balance - {{request.user.wallet.balance}}
+            </h1>
+            
+            <div id="cart-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for item in products %}
+                <div class="card bg-base-100 w-full shadow-lg flex flex-col rounded-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                
+                    <figure class="w-full overflow-hidden">
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover transition-transform duration-300 transform hover:scale-110" />
+                    </figure>
+                    
+                    <div class="card-body p-4 flex-1 flex flex-col">
+                        <h2 class="card-title text-xl font-semibold mb-2 text-white">
+                            {{ item.name }}
+                            <div class="badge badge-secondary">NEW</div>
+                        </h2>
+                        <p class="text-sm mb-4 text-lime-200"><strong>Price:</strong> ${{ item.price }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-gray-500">Your cart is empty.</p>
+                {% endfor %}
+            </div>
+            
+            {% if cart %}
+            <div class="mt-6 p-4 border rounded-lg bg-gray-100 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Total: ${{ total }}</h2>
+                <a href="{% url 'checkout' %}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Proceed to Checkout</a>
+            </div>
+            {% endif %}
+        </div>
+{% endblock %}

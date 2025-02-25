@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect , get_object_or_404
 from .forms import SignupForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from product.models import Product , Cart , Wallet , Buying
 
 def signup(request):
     if request.method == 'POST':
@@ -13,6 +14,7 @@ def signup(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
+            Wallet.objects.create(user=user)
             login(request, user)
             messages.success(request, f'Signup successful! Welcome {user.username}')
             return redirect(reverse('profile', kwargs={'username': user.username}))
@@ -51,14 +53,14 @@ def Login(request):
 @login_required(login_url='login')
 def user_dashboard(request, username):
     if request.user.username != username:
-        return redirect('login')  
+        return redirect('login') 
+    count = Product.objects.filter(user=request.user).count()
+    cart = Cart.objects.filter(user=request.user).count()
     context = {
         'username':username,
         'user': request.user,
-        'earnings': 100.50,  
-        'card_last_digits': '1234', 
-        'products_count': 5,  
-        'bought_count': 3, 
+        'count':count,
+        'cart':cart,
     }
     return render(request, 'user_app/user.html', context)
 
@@ -67,3 +69,11 @@ def logout_view(request):
     logout(request)
     messages.success(request, "You have successfully logged out.")
     return redirect('home')  
+
+
+@login_required
+def buying_list(request, username):
+    buying = get_object_or_404(Buying, user=request.user)  # ✅ Correct usage
+    products = buying.products.all()
+
+    return render(request, 'user_app/buying_list.html', {'products': products})
