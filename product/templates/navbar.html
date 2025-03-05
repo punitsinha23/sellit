@@ -13,7 +13,12 @@
           <a class="btn btn-ghost text-xl" style="color: aliceblue;">SELLIT</a>
         </div>
         {% if request.user.is_authenticated %}
-        <div class="flex-none">
+          <div class="flex-none">
+            <div class="mr-2 text-3xl text-white font-bold">
+              <a href="{% url 'search' %}" class=" btn btn-ghost btn-circle hover:bg-gray-700 hover:text-white transition duration-300 mb-1">
+                  <img src="https://www.freeiconspng.com/uploads/search-icon-png-21.png" height="20px" width="20px">
+              </a>
+          </div>
             <div class="mr-2 text-3xl text-black font-bold">
                 <a href="{% url 'create' username=user.username %}" class=" btn btn-ghost btn-circle text-3xl hover:bg-gray-700 hover:text-white transition duration-300 mb-1">
                     +
@@ -62,7 +67,7 @@
         {% endif %}
           <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-              <div class="w-10 rounded-full">
+              <div class="w-10 rounded-full " style="width: 25px;">
                 <img
                   alt="Tailwind CSS Navbar component"
                   src="https://th.bing.com/th/id/OIP.PoS7waY4-VeqgNuBSxVUogAAAA?rs=1&pid=ImgDetMain" />

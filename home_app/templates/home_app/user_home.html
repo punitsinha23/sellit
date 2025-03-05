@@ -31,7 +31,7 @@
                 {{ product.name }}
                 <div class="badge badge-secondary">NEW</div>
             </h2>
-            <p class="text-gray-300 text-sm mb-4">{{ product.description }}</p>
+            <p class="text-gray-300 text-sm mb-4">{{ product.description|truncatechars:100 }}</p>
             <a href="{% url 'checkoutproduct' username=user.username pk=product.pk %}">
                 <button class="btn btn-info w-full py-2 font-bold text-white transition-colors duration-300 hover:bg-blue-700 hover:text-white rounded-lg">
                     Checkout

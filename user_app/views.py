@@ -84,7 +84,7 @@ def logout_view(request):
 
 @login_required
 def buying_list(request, username):
-    buying = get_object_or_404(Buying, user=request.user)  # ✅ Correct usage
+    buying = get_object_or_404(Buying, user=request.user)  
     products = buying.products.all()
 
     return render(request, 'user_app/buying_list.html', {'products': products})

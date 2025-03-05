@@ -2,8 +2,7 @@
 
 {% block content %}
 {% include 'navbar.html' %}
-
-<hr class="w-full border-gray-600 my-6">
+<hr width="100%">
 
 <!-- Main Container -->
 <div class="container mx-auto px-6 py-8">
@@ -22,8 +21,9 @@
                          alt="Your Products" 
                          class="w-14 h-14 rounded-full mr-4">
                     <h2 class="text-gray-100 text-lg font-semibold flex-wrap break-words">
-                        YOUR PRODUCTS:
-                        <span class="text-green-400 font-bold ml-2">{{ count }} Product</span>
+                        YOUR PRODUCTS
+                        <span class="text-green-400 font-bold ml-2"></span>
+                        <p class="text-green-400 font-bold ">{{ count }} Product</p>
                     </h2>
                 </div>
                 <p class="text-gray-300 truncate">View and manage your products.</p>
@@ -38,8 +38,9 @@
                          alt="Your Cart" 
                          class="w-14 h-14 rounded-full mr-4">
                     <h2 class="text-white text-lg font-semibold flex-wrap break-words">
-                        YOUR CART:
-                        <span class="text-green-400 font-bold ml-2">{{ cart }} Product</span>
+                        YOUR CART
+                        <span class="text-green-400 font-bold ml-2"></span>
+                        <p class="text-green-400 font-bold">{{ cart }} Product</p>
                     </h2>
                 </div>
                 <p class="text-gray-300 truncate">View items in your cart.</p>
@@ -54,8 +55,9 @@
                          alt="Your Wallet" 
                          class="w-14 h-14 rounded-full mr-4">
                     <h2 class="text-white text-lg font-semibold flex-wrap break-words">
-                        YOUR WALLET:
-                        <span class="text-green-400 font-bold ml-2">{{ request.user.wallet.balance }} VC</span>
+                        YOUR WALLET
+                        <span class="text-green-400 font-bold ml-2"></span>
+                        <p class="text-green-400 font-bold" >{{ request.user.wallet.balance }} VC</p>
                     </h2>
                 </div>
                 <p class="text-gray-300 truncate">Check your earnings.</p>
@@ -70,11 +72,26 @@
                          alt="Your Buyings" 
                          class="w-14 h-14 rounded-full mr-4">
                          <h2 class="text-white text-lg font-semibold flex-wrap break-words">
-                            YOUR BUYING:
-                            <span class="text-green-400 font-bold ml-2">{{ product_count }} Product</span>
+                            YOUR BUYING
+                            <span class="text-green-400 font-bold ml-2"></span>
+                            <p class="text-green-400 font-bold" >{{ product_count }} Product</p>
                         </h2>
                 </div>
                 <p class="text-gray-300 truncate">View your purchase history.</p>
+            </a>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl shadow-lg hover:bg-slate-700 transition-transform duration-300 transform hover:scale-105">
+            <a href="{% url 'product_list' username %}" class="block">
+                <div class="flex items-center mb-4">
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/331/341/non_2x/vector-setting-icon.jpg" 
+                         alt="Your Products" 
+                         class="w-14 h-14 rounded-full mr-4">
+                    <h2 class="text-gray-100 text-lg font-semibold flex-wrap break-words">
+                      EDIT PROFILE
+                    </h2>
+                </div>
+                <p class="text-gray-300 truncate">Edit your profile</p>
             </a>
         </div>
 

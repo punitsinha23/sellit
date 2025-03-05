@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+    <main class="flex-grow p-6">
+        <div class="max-w-3xl mx-auto bg-gray-800 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-300 mb-4">Search</h2>
+            <form method="GET" action="{% url 'search' %}" class="flex items-center space-x-2">
+                <input type="text" name="q" placeholder="Search for products or user..." class="input input-bordered w-full p-2 rounded-lg" required>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            
+            {% if results or users %}
+            <div class="mt-6">
+                <h3 class="text-2xl font-semibold text-gray-200 mb-4">Results:</h3>
+                <ul class="space-y-4">
+                    {% for item in results %}
+                        <a href="{% url 'checkoutproduct' user.username item.id %}" class="block">
+                            <li class="p-4 bg-gray-700 rounded-lg flex justify-between items-center 
+                                       transition duration-300 hover:bg-gray-600 shadow-md border border-gray-600">
+                                <span class="font-bold text-gray-100">{{ item.name }}</span>
+                                <span class="text-green-400 font-bold">{{ item.price }}</span>
+                            </li>
+                        </a>
+                    {% endfor %}
+        
+                    {% for user in users %}
+                    <a href="{% url 'users_profile' user.username %}" class="block">
+                        <li class="p-4 bg-gray-700 rounded-lg flex justify-between items-center 
+                                       transition duration-300 hover:bg-gray-600 shadow-md border border-gray-600">
+                                <span class="font-bold text-gray-100">{{ user.username }}</span>
+                            </li>
+                        </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p class="mt-4 text-gray-300">No results found.</p>
+        {% endif %}
+        </div>
+
+{% endblock %}

@@ -3,6 +3,7 @@ from .models import Product , Cart
 from .forms import Productform
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 balance = 1000
 
@@ -107,3 +108,20 @@ def navbar_view(request):
         'total_price': total_price,
     })
 
+@login_required
+def search_user(request):
+    if request.method == 'GET':
+        query = request.GET.get('q', '')  
+        results = Product.objects.filter(name__icontains=query)
+        user = User.objects.filter(username__iexact=query) 
+        
+        return render(request, 'search.html', {'results': results , 'users':user })
+    else:
+        return render(request, 'search.html', {'results': [], 'users': []})  
+
+
+@login_required
+def user_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    products = Product.objects.filter(user=user)
+    return render(request, 'user_profile.html', {'user': user , 'products':products})

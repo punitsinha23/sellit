@@ -30,9 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^t2*w+*cd2-vy-u_6=yc3+u%5dxifitz8kd_a(5rnv#)@(*xb2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =False
+DEBUG =True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["sellit-gamma.vercel.app", "localhost", "127.0.0.1"]
 
 # Application definition
 
@@ -110,12 +110,12 @@ DATABASES = {
     }
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-    'API_KEY': os.getenv('API_KEY'),
-    'API_SECRET': os.getenv('API_SECRET'),
+    'CLOUDINARY_CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'CLOUDINARY_API_KEY': os.getenv('CLOUDINARY_CLOUD_API_KEY'),
+    'CLOUDINARY_API_SECRET': os.getenv('CLOUDINARY_CLOUD_API_SECRET'),
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
