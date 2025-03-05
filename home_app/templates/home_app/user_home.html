@@ -33,7 +33,7 @@
             </h2>
             <p class="text-gray-300 text-sm mb-4">{{ product.description|truncatechars:100 }}</p>
             <a href="{% url 'checkoutproduct' username=user.username pk=product.pk %}">
-                <button class="btn btn-info w-full py-2 font-bold text-white transition-colors duration-300 hover:bg-blue-700 hover:text-white rounded-lg">
+                <button class="btn btn-info w-full py-2 font-bold text-white transition-colors duration-300 hover:bg-blue-700 hover:text-white rounded-lg" styles="margin-top: 10px;">
                     Checkout
                 </button>
             </a>
