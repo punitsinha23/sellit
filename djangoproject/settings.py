@@ -127,7 +127,7 @@ CLOUDINARY_STORAGE = {
     'CLOUDINARY_API_SECRET': os.getenv('CLOUDINARY_CLOUD_API_SECRET'),
 }
 
-#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
