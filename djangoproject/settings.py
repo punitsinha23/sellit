@@ -12,10 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-#import cloudinary
-#import cloudinary.uploader
-#import cloudinary.api
-#from cloudinary_storage.storage import MediaCloudinaryStorage
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from cloudinary_storage.storage import MediaCloudinaryStorage
 import pdb
 
 
@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^t2*w+*cd2-vy-u_6=yc3+u%5dxifitz8kd_a(5rnv#)@(*xb2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =True
+DEBUG =False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -121,11 +121,11 @@ DATABASES = {
         }
     }
 
-'''CLOUDINARY_STORAGE = {
+CLOUDINARY_STORAGE = {
     'CLOUDINARY_CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
     'CLOUDINARY_API_KEY': os.getenv('CLOUDINARY_CLOUD_API_KEY'),
     'CLOUDINARY_API_SECRET': os.getenv('CLOUDINARY_CLOUD_API_SECRET'),
-}'''
+}
 
 #DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
