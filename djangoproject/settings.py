@@ -47,13 +47,12 @@ INSTALLED_APPS = [
     'product',
     'home_app',
     'user_app',
+    'userchat',
     'theme',
     'tailwind',
     'django_browser_reload',
     'cloudinary', 
     'cloudinary_storage', 
-    'userchat',
-
 ]
 
 TAILWIND_APP_NAME = 'theme'
