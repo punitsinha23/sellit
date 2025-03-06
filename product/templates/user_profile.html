@@ -13,6 +13,10 @@
     {% else %}
         <img src="/media/profile_pics/default.jpg" alt="Default Profile Picture" class="rounded-full w-32 h-32 border-4 border-gray-500 shadow-lg">
     {% endif %}
+    <!-- Chat Button -->
+   <a href="{% url 'userchat:chat_room' user.username %}" class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition">
+    Chat with {{ user.username }}
+   </a>
 
     <p class="text-gray-300 mt-4"><strong>Email:</strong> {{ user.email }}</p>
     <p class="text-gray-300"><strong>Joined:</strong> {{ user.date_joined }}</p>

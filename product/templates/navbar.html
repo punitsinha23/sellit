@@ -4,90 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>navbar</title>
+    <title>Navbar</title>
     {% tailwind_css %}
 </head>
 <body>
-    <div class="navbar bg-base-100">
+    <div class="navbar bg-slate-900 px-6 py-3 shadow-lg">
+        <!-- Brand Name -->
         <div class="flex-1">
-          <a class="btn btn-ghost text-xl" style="color: aliceblue;">SELLIT</a>
+            <a href="{% url 'home' %}" class="text-xl text-white font-bold hover:text-gray-300">SELLIT</a>
         </div>
+
         {% if request.user.is_authenticated %}
-          <div class="flex-none">
-            <div class="mr-2 text-3xl text-white font-bold">
-              <a href="{% url 'search' %}" class=" btn btn-ghost btn-circle hover:bg-gray-700 hover:text-white transition duration-300 mb-1">
-                  <img src="https://www.freeiconspng.com/uploads/search-icon-png-21.png" height="20px" width="20px">
-              </a>
-          </div>
-            <div class="mr-2 text-3xl text-black font-bold">
-                <a href="{% url 'create' username=user.username %}" class=" btn btn-ghost btn-circle text-3xl hover:bg-gray-700 hover:text-white transition duration-300 mb-1">
-                    +
+            <!-- Navbar Icons -->
+            <div class="flex items-center space-x-4">
+                <!-- Search Icon -->
+                <a href="{% url 'search' %}" class="btn btn-ghost btn-circle hover:bg-gray-700">
+                    <img src="https://www.freeiconspng.com/uploads/search-icon-png-21.png" class="w-6 h-6 invert">
                 </a>
-            </div>
-            <div class="mr-2 text-3xl text-white font-bold">
-              <a href="{% url 'userhome' username=user.username %}" class=" btn btn-ghost btn-circle hover:bg-gray-700 hover:text-white transition duration-300 mb-1">
-                  <img src="https://www.svgrepo.com/show/146421/homepage.svg" height="24px" width="24px">
-              </a>
-          </div>
-        <div class="dropdown dropdown-end flex items-center">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-              <div class="indicator">
-                <svg
-                  style="color:black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                {% if cart %}
-                    <span class="badge badge-sm indicator-item">{{ product_count }}</span>
-                {% else %}
-                    <span class="badge badge-sm indicator-item">0</span>
-                {% endif %}
-              </div>
-            </div>
-            <div
-              tabindex="0"
-              class="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
-              <div class="card-body mt-12">
-                <span class="text-lg font-bold">{{ product_count }} Items</span>
-                <span class="text-info">Subtotal: ${{ total_price }}</span>
-                <div class="card-actions">
-                  <a href="{% url 'view_cart' username=request.user.username %}" class="btn btn-primary btn-block">View cart</a>
+
+                <!-- Home Icon -->
+                <a href="{% url 'userhome' username=request.user.username %}" class="btn btn-ghost btn-circle hover:bg-gray-700">
+                    <img src="https://www.svgrepo.com/show/146421/homepage.svg" class="w-6 h-6 invert">
+                </a>
+                <a href="{% url 'create' username=request.user.username %}" class="btn btn-ghost btn-circle hover:bg-gray-700 text-3xl text-white">+</a>
+                <!-- Shopping Cart -->
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                        <div class="indicator">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            <span class="badge badge-sm indicator-item">
+                                {{ product_count|default:0 }}
+                            </span>
+                        </div>
+                    </div>
+                    <div tabindex="0" class="menu menu-compact dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow">
+                        <span class="text-lg font-bold">{{ product_count }} Items</span>
+                        <span class="text-info">Subtotal: ${{ total_price|default:0 }}</span>
+                        <div class="card-actions">
+                            <a href="{% url 'view_cart' username=request.user.username %}" class="btn btn-primary btn-block">View Cart</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        {% endif %}
-          <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-              <div class="w-10 rounded-full " style="width: 25px;">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://th.bing.com/th/id/OIP.PoS7waY4-VeqgNuBSxVUogAAAA?rs=1&pid=ImgDetMain" />
-              </div>
-            </div>
-            <ul
-              tabindex="0"
-              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              {% if request.user.is_authenticated %}
+
+                <!-- User Profile Dropdown -->
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <div class="rounded-full" style="width: 30px; height: 30px;">
+                            {% if request.user.profile.profile_picture %}
+                                <img src="{{ request.user.profile.profile_picture.url }}" alt="Profile Picture" class="w-full h-full rounded-full">
+                            {% else %}
+                                <img src="https://th.bing.com/th/id/OIP.PoS7waY4-VeqgNuBSxVUogAAAA?rs=1&pid=ImgDetMain" alt="Default Avatar" class="w-full h-full rounded-full">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow">
                         <li><a href="{% url 'userhome' username=request.user.username %}">Home</a></li>
                         <li><a href="{% url 'profile' username=request.user.username %}">Profile</a></li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-              <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="{% url 'signup' %}">Sign up</a></li>
-              <li><a href="{% url 'login' %}">Login</a></li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      </div>
+                    </ul>
+                </div>
+            </div>
+        {% else %}
+            <!-- Guest Links -->
+            <div class="flex items-center space-x-4">
+                <a href="{% url 'signup' %}" class="text-white hover:text-gray-300">Sign Up</a>
+                <a href="{% url 'login' %}" class="text-white hover:text-gray-300">Login</a>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>

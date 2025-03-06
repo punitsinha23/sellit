@@ -8,3 +8,7 @@ psycopg2-binary
 pillow
 django-cloudinary-storage
 cloudinary
+channels==4.0.0
+channels-redis==4.1.0
+daphne==4.0.0
+asgiref==3.7.2

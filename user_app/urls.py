@@ -8,5 +8,7 @@ urlpatterns = [
     path('profile/<str:username>/', views.user_dashboard, name='profile'),
     path('cart/<str:username>/', views.user_dashboard, name='cart'),
     path('buying/<str:username>/', views.buying_list , name='buying_list'),
-
+    path('settings/', views.profile_settings, name='settings'),
 ]
+
+

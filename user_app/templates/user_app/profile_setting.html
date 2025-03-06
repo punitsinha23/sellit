@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<hr width="100%">
+<br>
+
+<div class="flex justify-center items-center min-h-screen">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-center text-2xl font-bold text-white mb-4">Profile Settings</h2>
+
+        <!-- Display Messages -->
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="text-center bg-green-500 text-white py-2 px-4 rounded-lg">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+
+            <!-- Profile Picture Preview -->
+            <div class="flex flex-col items-center">
+                {% if profile.profile_picture %}
+                    <img id="profilePreview" src="{{ profile.profile_picture.url }}" 
+                         class="rounded-full w-32 h-32 border-4 border-gray-500 shadow-lg">
+                {% else %}
+                    <img id="profilePreview" src="/media/profile_pics/default.jpg" 
+                         class="rounded-full w-32 h-32 border-4 border-gray-500 shadow-lg">
+                {% endif %}
+            </div>
+
+            <!-- File Input for Profile Picture -->
+            <label class="block text-white font-semibold">Profile Picture</label>
+            <div class="relative w-full">
+                <label class="custom-file-input">
+                    Choose File
+                    <input type="file" name="profile_picture" id="id_profile_picture" accept="image/*" onchange="previewImage(event)">
+                </label>
+            </div>
+
+            <!-- Username Field -->
+            <label class="block text-white font-semibold">Username</label>
+            <input type="text" name="username" value="{{ form.username.value }}"
+                   class="w-full px-3 py-2 border rounded-lg bg-gray-900 text-white">
+
+            <!-- Submit Button -->
+            <button type="submit" 
+                    class="w-full bg-blue-600 text-white py-2 font-bold rounded-lg hover:bg-blue-800 transition">
+                Save Changes
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- JavaScript to Show Profile Pic Preview -->
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('profilePreview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+<!-- Custom File Input Styling -->
+<style>
+    .custom-file-input {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 45px;
+        border: 2px solid white;
+        border-radius: 8px;
+        background-color: #1f2937; /* Tailwind bg-gray-900 */
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+        position: relative;
+    }
+
+    .custom-file-input input {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+</style>
+
+{% endblock %}

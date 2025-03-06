@@ -5,7 +5,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from product.models import Product , Cart , Wallet , Buying
+from product.models import Product , Cart , Wallet , Buying 
+from .models import Profile
+from .forms import ProfileUpdateForm
 
 def signup(request):
     if request.method == 'POST':
@@ -88,3 +90,19 @@ def buying_list(request, username):
     products = buying.products.all()
 
     return render(request, 'user_app/buying_list.html', {'products': products})
+
+@login_required()
+def profile_settings(request):
+    user = request.user
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    if request.method == "POST":
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=profile, user=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your profile has been updated successfully!")
+            return redirect("settings")  
+    else:
+        form = ProfileUpdateForm(instance=profile, user=user)
+
+    return render(request, "user_app/profile_setting.html", {"form": form, "profile": profile})
