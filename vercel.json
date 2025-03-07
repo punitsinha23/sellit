@@ -1,16 +1,21 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "djangoproject/wsgi.py",
-        "use": "@vercel/python"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "djangoproject/wsgi.py"
-      }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "djangoproject/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "djangoproject/wsgi.py"
+    }
+  ],
+  "buildCommand": "pip install -r requirements.txt && python manage.py migrate",
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "djangoproject.settings",
+    "SECRET_KEY": "django-insecure-^t2*w+*cd2-vy-u_6=yc3+u%5dxifitz8kd_a(5rnv#)@(*xb2",
+    "DEBUG": "false"
   }
-  
+}
