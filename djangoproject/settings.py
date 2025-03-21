@@ -12,10 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-#import cloudinary
-#import cloudinary.uploader
-#import cloudinary.api
-#from cloudinary_storage.storage import MediaCloudinaryStorage
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from cloudinary_storage.storage import MediaCloudinaryStorage
 import pdb
 from dotenv import load_dotenv
 
