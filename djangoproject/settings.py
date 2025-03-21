@@ -17,6 +17,9 @@ import cloudinary.uploader
 import cloudinary.api
 from cloudinary_storage.storage import MediaCloudinaryStorage
 import pdb
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^t2*w+*cd2-vy-u_6=yc3+u%5dxifitz8kd_a(5rnv#)@(*xb2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -111,7 +114,7 @@ DATABASES = {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'neondb',
             'USER': 'neondb_owner', 
-            'PASSWORD': '1UkzdnsmKhH5',  
+            'PASSWORD': os.getenv('DB_PASSWORD'),  
             'HOST': 'ep-green-dew-a4cctqox-pooler.us-east-1.aws.neon.tech',
             'PORT': '5432',  
             'OPTIONS': {

@@ -17,7 +17,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
-class Cart(models.Model):  # Renamed from CartProduct to Cart
+class Cart(models.Model):  
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart', null=True)
     products = models.ManyToManyField(Product, related_name='carts', blank=True)  
 
