@@ -14,4 +14,4 @@ daphne==4.0.0
 asgiref==3.7.2
 django-redis
 redis 
-dotenv
+python-dotenv
